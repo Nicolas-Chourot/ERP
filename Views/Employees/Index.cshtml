@@ -2,64 +2,70 @@
 
 @{
     ViewBag.Title = "Index";
+
+    string SortIcon(string field, string sortfield, bool ascending)
+    {
+        string sortIcon = "";
+        if (field == sortfield)
+        {
+            if (ascending) 
+                { sortIcon = "fa fa-sort-amount-asc"; }
+            else 
+                { sortIcon = "fa fa-sort-amount-desc"; }
+        }
+        return sortIcon;
+    }
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DepartmentId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.JobTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ClassificationId)
-        </th>
-        <th></th>
-    </tr>
+<h2>Liste des employés</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <a href="mailto:@item.Email">
-            @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
-            </a>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BirthDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone) p. @Html.DisplayFor(modelItem => item.PhoneExt)
-        </td>
-        <td>
+<div class="employeeListHeaderLayout">
+    <a href="@Url.Action("SetSortField", new {sortfield = "LastName"})">
+        <span class="@SortIcon("LastName", ViewBag.SortField, ViewBag.SortDirection)"></span>
+        @Html.DisplayNameFor(model => model.LastName)
+    </a>
+    <a href="@Url.Action("SetSortField", new {sortfield = "BirthDate"})">
+        <span class="@SortIcon("BirthDate", ViewBag.SortField, ViewBag.SortDirection)"></span>
+        @Html.DisplayNameFor(model => model.BirthDate)
+    </a>
+    <a href="@Url.Action("SetSortField", new {sortfield = "Department"})">
+        <span class="@SortIcon("Department", ViewBag.SortField, ViewBag.SortDirection)"></span>
+        @Html.DisplayNameFor(model => model.DepartmentId)
+    </a>
+    <a href="@Url.Action("SetSortField", new {sortfield = "Classification"})">
+        <span class="@SortIcon("Classification", ViewBag.SortField, ViewBag.SortDirection)"></span>
+        @Html.DisplayNameFor(model => model.ClassificationId)
+    </a>
+    <span>
+        @Helper.IconCmd("Create", "fa-plus-square", "Ajouter un employé...")
+    </span>
+    <span>&nbsp;</span>
+    <span>&nbsp;</span>
+</div>
+@foreach (var item in Model)
+{
+    <div class="employeeListLayout">
+        <a href="mailto:@item.Email" style="font-weight:bold">
+            @Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName)
+        </a>
+        <span> @Html.DisplayFor(modelItem => item.BirthDate)</span>
+        <span>
             @Html.DisplayFor(modelItem => item.Department.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JobTitle)
-        </td>
-        <td>
+        </span>
+        <span>
             @Html.DisplayFor(modelItem => item.Classification.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+        </span>
+        <span>
+            @Helper.IconCmd("Edit/" + item.Id, "fa-edit", "Éditer " + item.LastName + " " + item.FirstName)
+        </span>
+        <span>
+            @Helper.IconCmd("Details/" + item.Id, "fa-search", "Voir les détails sur " + item.LastName + " " + item.FirstName)
+        </span>
+        <span>
+            @Helper.IconConfirmCmd("Delete/" + item.Id, "fa-times-rectangle-o", "Effacer " + item.LastName + " " + item.FirstName)
+        </span>
+    </div>
 }
 
-</table>
+

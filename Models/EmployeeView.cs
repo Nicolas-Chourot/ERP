@@ -28,7 +28,7 @@ namespace ERP.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public System.DateTime BirthDate { get; set; }
         [Display(Name = "Téléphone")]
-        [RegularExpression(@"^\(\d\d\d\) \d\d\d-\d\d\d\d$", ErrorMessage = "Format incorrect, utilisez (999) 999-9999")]
+        [Required(ErrorMessage = "Ce champ est requis")]
         public string Phone { get; set; }
         [Display(Name = "Poste"), MaxLength(10, ErrorMessage = "Excède 10 chiffress")]
         [RegularExpression(@"^[0-9]*$", ErrorMessage = "Doit comporter uniquement des chiffres")]

@@ -1,4 +1,6 @@
-﻿body {
+﻿@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -29,19 +31,135 @@ textarea {
     border-color: #fff
 }
 
+
+.icon {
+    font-size: 25px !important;
+    cursor: pointer;
+    -webkit-text-stroke-width: 0.75px;
+    -webkit-text-stroke-color: #337ab7;
+    -webkit-text-fill-color: #337ab7;
+}
+
+    .icon:hover {
+        -webkit-text-stroke-color: #6dbafc;
+        -webkit-text-fill-color: #6dbafc;
+    }
+
+
+    .icon:active {
+        -webkit-text-stroke-color: #e0f1ff;
+        -webkit-text-fill-color: #e0f1ff;
+    }
+
 .radioButtonGroup {
-    padding:10px;
-    display:grid;
+    padding: 10px;
+    display: grid;
     grid-template-columns: 20px auto;
-    align-items:center;
+    align-items: center;
     max-width: 280px;
-    border:1px solid #ccc;
-    border-radius:4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-.radioButtonGroup input {
-    margin-top:-3px;
-    width:16px;
-    height:16px;
+    .radioButtonGroup input {
+        margin-top: -3px;
+        width: 16px;
+        height: 16px;
+    }
+
+.employeeListHeaderLayout {
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 30px 30px 30px;
+    font-size: 1.25em;
+    row-gap: 6px;
+    align-items: center;
+    border-bottom: 1px solid #888;
+    height: 40px;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 }
 
+    .employeeListHeaderLayout a, div, span {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+.employeeListLayout {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 30px 30px 30px;
+    font-size: 1.2em;
+    row-gap: 6px;
+    align-items: center;
+    border-bottom: 1px solid #888;
+    height: 40px;
+}
+
+    .employeeListLayout a, div, span {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    .employeeListLayout .icon {
+        display: none;
+    }
+
+    .employeeListLayout:hover .icon {
+        display: block;
+    }
+
+.departementListHeaderLayout {
+    display: grid;
+    grid-template-columns: auto 35px 35px;
+    font-size: 1.5em;
+    row-gap: 6px;
+    align-items: center;
+    border-bottom: 1px solid #888;
+    height: 60px;
+}
+
+.departementListLayout {
+    display: grid;
+    grid-template-columns: auto 35px 35px;
+    font-size: 1.5em;
+    row-gap: 6px;
+    align-items: center;
+    border-bottom: 1px solid #888;
+    height: 30px;
+}
+
+    .departementListLayout .icon {
+        display: none;
+    }
+
+    .departementListLayout:hover .icon {
+        display: block;
+    }
+
+.departementEmployeListLayout {
+    margin-left: 40px;
+    display: grid;
+    grid-template-columns: auto;
+    font-size: 1em;
+    align-items: center;
+    margin-bottom:20px;
+}
+
+.employeeDetailsHeaderLayout {
+    margin-top:20px;
+    margin-bottom:20px;
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: auto 30px 30px;
+    font-size: 2em;
+    row-gap: 6px;
+    align-items: center;
+    border-bottom: 1px solid #888;
+    height: 40px;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}

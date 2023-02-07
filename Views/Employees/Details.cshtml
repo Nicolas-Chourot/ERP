@@ -1,0 +1,74 @@
+﻿@model ERP.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="employeeDetailsHeaderLayout">
+    <span>
+        Employé :  @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)
+    </span>
+    <span>
+        @Helper.IconCmd("Edit/" + Model.Id, "fa-edit", "Éditer " + Model.LastName + " " + Model.FirstName)
+    </span>
+    <span>
+        @Helper.IconConfirmCmd("Delete/" + Model.Id, "fa-times-rectangle-o", "Effacer " + Model.LastName + " " + Model.FirstName)
+    </span>
+</div>
+
+<div style="font-size:1.25em;">
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone) poste @Html.DisplayFor(model => model.PhoneExt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartmentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClassificationId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Classification.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Retour", "Index")
+</p>

@@ -27,12 +27,44 @@ namespace ERP.Models
             DB.SaveChanges();
             return true;
         }
-public static bool EmailAvailable(this ERPDBEntities DB, string email, int excludedId = 0)
-{
-    var employee = DB.Employees.Where(e => (e.Email == email) && (e.Id != excludedId)).FirstOrDefault();
-    return employee == null;
-}
-
-        // Todo add extensions : EditEmployee, DeleteEmployee, AddDepartment, EditDepartment, AddClassification, EditClassification
+        public static bool DeleteEmployee(this ERPDBEntities DB, int id)
+        {
+            Employee employee = DB.Employees.Find(id);
+            if (employee != null)
+            {
+                DB.Employees.Remove(employee);
+                DB.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+        public static bool EmailAvailable(this ERPDBEntities DB, string email, int excludedId = 0)
+        {
+            var employee = DB.Employees.Where(e => (e.Email == email) && (e.Id != excludedId)).FirstOrDefault();
+            return employee == null;
+        }
+        public static Department AddDepartment(this ERPDBEntities DB, Department department)
+        {
+            DB.Departments.Add(department);
+            DB.SaveChanges();
+            return department;
+        }
+        public static Department UpdateDepartment(this ERPDBEntities DB, Department department)
+        {
+            DB.Entry(department).State = EntityState.Modified;
+            DB.SaveChanges();
+            return department;
+        }
+        public static bool DeleteDepartment(this ERPDBEntities DB, int id)
+        {
+            Department department = DB.Departments.Find(id);
+            if (department != null && department.Employees.Count == 0)
+            {
+                DB.Departments.Remove(department);
+                DB.SaveChanges();
+                return true;
+            }
+            return false;
+        }
     }
 }
